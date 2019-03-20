@@ -498,7 +498,7 @@ ggsave("logit_confusion_bar.jpeg", device = "jpeg")
 
 
 
-#simulate a dataset to plot win curve
+#simulate a dataset to plot wincurve
 data.sim <- tibble(play.calling = seq(from=0,to=1, by=.01))
 data.sim <- data.sim %>%
   mutate(pred = 1/(1 + exp(-(4.2537 + -4.7542 * play.calling))))
@@ -535,6 +535,7 @@ WPA.model <- lm(WPA ~ PlayType2 +
                    ydstogo +
                    ScoreDiff +
                    as.factor(Season) +
+                  as.factor(Season) * posteam +
                    posteam + 
                   DefensiveTeam +
                    No_Score_Prob +
@@ -603,5 +604,7 @@ data.expectedWPA %>%
         legend.position = "bottom")
 
 ggsave("average_wpa_season.jpeg", height = 9, device = "jpeg")
+
+
 
 
